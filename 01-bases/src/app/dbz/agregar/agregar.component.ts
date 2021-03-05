@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interface';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-agregar',
@@ -13,22 +14,18 @@ export class AgregarComponent {
     poder: 0
   }
 
-  @Input()
-  personajes: Personaje[] = [];
+  constructor( private dbzService: DbzService ) { }
 
   agregar(): void {
 
     if (this.nuevo.nombre.trim().length < 1) { return; }
 
-    console.log(this.nuevo);
+    this.dbzService.agregarPersonaje( this.nuevo );
 
-    this.personajes.push(this.nuevo);
     this.nuevo = {
       nombre: '',
       poder: 0
     }
-
-    console.log(this.personajes);
   }
 
 }
