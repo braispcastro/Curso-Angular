@@ -9,23 +9,20 @@ import { DbzService } from '../services/dbz.service';
 export class AgregarComponent {
 
   @Input()
-  nuevo: Personaje = {
-    nombre: '',
-    poder: 0
-  }
+  nuevo: Personaje = { nombre: '', poder: 0 }
 
   constructor( private dbzService: DbzService ) { }
 
   agregar(): void {
 
-    if (this.nuevo.nombre.trim().length < 1) { return; }
+    // Validation
+    if (this.nuevo.nombre.trim().length < 1)
+      return;
 
     this.dbzService.agregarPersonaje( this.nuevo );
 
-    this.nuevo = {
-      nombre: '',
-      poder: 0
-    }
+    // Reset object
+    this.nuevo = { nombre: '', poder: 0 }
   }
 
 }

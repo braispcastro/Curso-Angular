@@ -9,9 +9,7 @@ export class MainPageComponent {
 
   constructor() { }
 
-  nuevo: Personaje = {
-    nombre: 'Trunks',
-    poder: 5000
-  }
+  // Init insert object
+  nuevo: Personaje = { nombre: 'Trunks', poder: 5000 }
 
 }

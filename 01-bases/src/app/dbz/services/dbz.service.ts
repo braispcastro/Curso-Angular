@@ -17,6 +17,7 @@ export class DbzService {
     ];
 
     get personajes(): Personaje[] {
+        // [...obj] para que retorne una nueva instancia del objeto y no sea manipulable desde fuera
         return [...this._personajes];
     }
 
