@@ -13,6 +13,7 @@ export class PorRegionComponent {
   termino: string = '';
   hayError: boolean = false;
   paises: Country[] = [];
+  regiones: string[] = [ 'africa', 'americas', 'asia', 'europe', 'oceania' ];
 
   constructor( private paisService: PaisService ) { }
 
