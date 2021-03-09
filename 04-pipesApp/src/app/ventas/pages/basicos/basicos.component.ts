@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-basicos',
@@ -6,11 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class BasicosComponent implements OnInit {
+export class BasicosComponent {
+
+  nombreLower: string = 'brais';
+  nombreUpper: string = 'BRAIS';
+  nombreCompleto: string = 'brAIs cAsTrO';
+
+  fecha: Date = new Date();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
