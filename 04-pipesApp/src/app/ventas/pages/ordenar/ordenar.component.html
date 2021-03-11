@@ -1,1 +1,79 @@
-<p>ordenar works!</p>
+
+
+<div class="text-layout">
+    <h1>Pipes personalizados</h1>
+    <p>Pipes creados por {{ 'NoSoTRoS' | mayusculas:isUpper }}</p>
+</div>
+
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <button pButton
+            label="Toggle"
+            class="p-mr-1 p-button-warning"
+            (click)="toggleUpper()">
+        </button>
+    </div>
+    
+    <div class="p-toolbar-group-right">
+        <button pButton
+            icon="pi pi-sort"
+            label="Nombre"
+            class="p-mr-1"
+            (click)="cambiarOrdenar('nombre')">
+        </button>
+        <button pButton
+            icon="pi pi-sort"
+            label="Vuela"
+            class="p-mr-1 p-button-success"
+            (click)="cambiarOrdenar('vuela')">
+        </button>
+        <button pButton
+            icon="pi pi-sort"
+            label="Color"
+            class="p-mr-1 p-button-help"
+            (click)="cambiarOrdenar('color')">
+        </button>
+    </div>
+</p-toolbar>
+
+<div class="p-grid">
+    <div class="p-col p-mt-2">
+        <p-table [value]="heroes | ordenar:ordenarPor">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Vuela</th>
+                    <th>Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-heroe>
+                <tr>
+                    <td>{{ heroe.nombre }}</td>
+                    <td>{{ (heroe.vuela | vuela) | titlecase }}</td>
+                    <td>{{ heroe.color }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="p-col p-mt-2">
+        <p-table [value]="heroes">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+                    <th pSortableColumn="vuela">Vuela <p-sortIcon field="vuela"></p-sortIcon></th>
+                    <th pSortableColumn="color">Color <p-sortIcon field="color"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-heroe>
+                <tr>
+                    <td>{{ heroe.nombre }}</td>
+                    <td>{{ (heroe.vuela | vuela) | titlecase }}</td>
+                    <td>{{ heroe.color }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
