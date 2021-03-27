@@ -1,7 +1,9 @@
 <h2>Reactive: Dinámicos</h2>
 <hr>
 
-<form autocomplete="off">
+<form autocomplete="off"
+      (ngSubmit)="guardar()"
+      [formGroup]="miFormulario">
 
     <!-- Nombre -->
     <div class="mb-3 row">
@@ -9,8 +11,10 @@
         <div class="col-sm-9">
             <input type="text"
                    class="form-control"
+                   formControlName="nombre"
                    placeholder="Nombre de la persona">
-            <span class="form-text text-danger">
+            <span class="form-text text-danger"
+                  *ngIf="campoNoValido('nombre')">
                   El nombre es obligatorio
             </span>
         </div>
@@ -23,9 +27,12 @@
             <div class="input-group">
                 <input type="text"
                        class="form-control"
-                       placeholder="Agregar favorito">
+                       [formControl]="nuevoFavorito"
+                       placeholder="Agregar favorito"
+                       (keyup.enter)="agregarFavorito()">
                 <button class="btn btn-outline-primary"
-                        type="button">
+                        type="button"
+                        (click)="agregarFavorito()">
                         Agregar
                 </button>
             </div>
@@ -35,17 +42,18 @@
     <!-- Lista de favoritos -->
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Favoritos</label>
-        <div class="col-sm-9">
-            <!-- <div class="input-group mt-2"
-                 *ngFor="let fav of persona.favoritos; let i = index">
+        <div class="col-sm-9" formArrayName="favoritos">
+            <div class="input-group mt-2"
+                *ngFor="let favorito of favoritosArr.controls; let i = index">
                 <input type="text"
-                       class="form-control">
+                       class="form-control"
+                       [formControlName]="i">
                 <button class="btn btn-outline-danger"
                         type="button"
-                        (click)="a=1">
+                        (click)="borrar(i)">
                         Borrar
                </button>
-            </div> -->
+            </div>
         </div>
     </div>
 
@@ -62,5 +70,12 @@
 
 
 
-<!-- <span>Persona</span>
-<pre>{{ persona | json }}</pre> -->
+<span>Valid</span>
+<pre>{{ miFormulario.valid }}</pre>
+
+<span>Value</span>
+<pre>{{ miFormulario.value | json }}</pre>
+
+<span>Agregar juego</span>
+<pre>{{ nuevoFavorito.valid }}</pre>
+<pre>{{ nuevoFavorito.value }}</pre>
