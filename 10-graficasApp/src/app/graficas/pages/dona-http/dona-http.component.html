@@ -1,0 +1,24 @@
+<h1>RRSS más usadas</h1>
+<hr>
+
+<div *ngIf="doughnutChartData.length === 0; else chart"
+     class="alert alert-info">Cargando...</div>
+
+<div class="row">
+    <div class="col">
+
+        <ng-template #chart>
+            <div style="display: block">
+                <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"
+                        [colors]="colors">
+                </canvas>
+            </div>
+
+            <span class="float-end">Información en billones de usuarios</span>
+        </ng-template>
+
+    </div>
+</div>
